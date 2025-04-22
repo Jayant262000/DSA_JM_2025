@@ -148,7 +148,8 @@ int main()
 	
 			
 		printf("\nChoice: ");			
-		scanf("%d",&Choice);
+		scanf(" %d",&Choice);
+		getchar();
 		
 
 		
@@ -181,6 +182,10 @@ int main()
 					Start = NULL;
 					exit(0);
 			break;
+			
+			default: 
+					printf("!!! Invalid Choice  !!!");
+			continue;
 			
 		}
 	     	

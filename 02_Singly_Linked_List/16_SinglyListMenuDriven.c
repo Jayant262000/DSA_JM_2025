@@ -370,7 +370,8 @@ int main()
  
         printf("+-------------------------------------+\n");
 		printf("   Enter your choice: ");
-		scanf("%d", &ch);
+		scanf("% d", &ch);
+		getchar();
 		printf("+-------------------------------------+\n");		
 	    switch(ch){
 			case 1:
@@ -481,7 +482,11 @@ int main()
 					last = NULL;
 					free(last);
 					exit(0);
-			break;		
+			break;	
+			
+			default: 
+					printf("!!! Invalid Choice  !!!");
+			continue;
 				
 		} 
 				

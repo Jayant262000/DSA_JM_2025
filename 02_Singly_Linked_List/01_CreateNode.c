@@ -67,7 +67,8 @@ int main()
 		
 			
 		printf("\nChoice: ");			
-		scanf("%d",&Choice);
+		scanf(" %d",&Choice);
+		getchar();
 		
 		
 		
@@ -88,6 +89,10 @@ int main()
 					free(Start);
 					exit(0);
 			break;
+			
+			default: 
+					printf("!!! Invalid Choice  !!!");
+			continue;
 			
 		}
 				

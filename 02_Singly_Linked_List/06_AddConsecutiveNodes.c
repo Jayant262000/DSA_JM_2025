@@ -154,7 +154,8 @@ int main()
 		
 			
 		printf("\nChoice: ");			
-		scanf("%d",&Choice);
+		scanf(" %d",&Choice);
+		getchar();
 	
 		switch (Choice){
 			
@@ -187,6 +188,10 @@ int main()
 					Start = NULL;
 					exit(0);
 			break;
+			
+			default: 
+					printf("!!! Invalid Choice  !!!");
+			continue;
 		}
 	    
 	}while(Choice!=4);
