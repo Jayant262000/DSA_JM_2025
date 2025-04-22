@@ -33,6 +33,7 @@ SLL * DeleteInPosition(SLL * ,int );
 SLL * DeleteSpecificNode(SLL * ,int );
 void DisplayReverseList(SLL * );
 void DisplaySinglyLinkedList(SLL * );
+void FreeLinkedList(SLL* );
 
 
 //Singly Linked List creation
@@ -327,6 +328,16 @@ void DisplaySinglyLinkedList(SLL * Head)
 	}
 }
 
+//Free Linked List
+void FreeLinkedList(SLL * Head){
+	SLL * temp = NULL;
+	
+	while(Head!=NULL){
+		temp = Head;
+		Head = Head->next;
+		free(temp);
+	}
+}
 
 int main()
 {
@@ -363,6 +374,7 @@ int main()
 		printf("+-------------------------------------+\n");		
 	    switch(ch){
 			case 1:
+					FreeLinkedList(Start);
 					Start = NULL;
 					Start = CreateLinkedList(Start,&last,&totalNodes);
 			break;
@@ -464,8 +476,8 @@ int main()
 
 			case 0: 
 					printf("\n\n Exiting the linked list ....");
+					FreeLinkedList(Start);
 					Start = NULL;
-					free(Start);
 					last = NULL;
 					free(last);
 					exit(0);

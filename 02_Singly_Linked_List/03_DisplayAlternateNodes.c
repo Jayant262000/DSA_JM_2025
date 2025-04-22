@@ -19,6 +19,13 @@ typedef struct SinglyLinkedList{
 	struct SinglyLinkedList * next;	
 }SLL;
 
+//Functions
+SLL * CreateLinkedList(SLL * );
+void DisplaySinglyLinkedList(SLL * );
+void DisplayAlternateNodes(SLL * );
+void FreeLinkedList(SLL* );
+
+//Create Linked List
 SLL * CreateLinkedList(SLL * Head){
 	char ans;
 	 SLL * Node = NULL;
@@ -60,7 +67,7 @@ SLL * CreateLinkedList(SLL * Head){
 
 }
 
-
+//Display Linked List
 void DisplaySinglyLinkedList(SLL * Head)
 {
 	if(Head == NULL)
@@ -76,6 +83,7 @@ void DisplaySinglyLinkedList(SLL * Head)
 	}
 }
 
+//Display Alternate List
 void DisplayAlternateNodes(SLL * Head)
 {
 	
@@ -96,13 +104,23 @@ void DisplayAlternateNodes(SLL * Head)
 	}
 }
 
+//Free Linked List
+void FreeLinkedList(SLL * Head){
+	SLL * temp = NULL;
+	
+	while(Head!=NULL){
+		temp = Head;
+		Head = Head->next;
+		free(temp);
+	}
+}
+
 int main()
 {
     //code
 	char ch; 
 	int Choice;
 	SLL * Start = NULL;
-	 SLL * last = NULL;
 	
 	
 	do{
@@ -118,6 +136,8 @@ int main()
 		switch (Choice){
 			
 			case 1:	
+					FreeLinkedList(Start);
+					Start = NULL;
 					Start = CreateLinkedList(Start);
 			break;
 		
@@ -133,8 +153,8 @@ int main()
 			
 			case 4:
 					printf("\n\n Exiting the linked list ....");
+					FreeLinkedList(Start);
 					Start = NULL;
-					free(Start);
 					exit(0);
 			break;
 			

@@ -17,6 +17,12 @@ typedef struct SinglyLinkedList{
 	struct SinglyLinkedList * next;	
 }SLL;
 
+//Functions
+SLL * CreateLinkedList(SLL * );
+void DisplaySinglyLinkedList(SLL * );
+void FreeLinkedList(SLL* );
+
+// Create list 
 SLL * CreateLinkedList(SLL * Head){
 	char ans;
 	 SLL * Node = NULL;
@@ -59,6 +65,8 @@ SLL * CreateLinkedList(SLL * Head){
 }
 
 
+
+//Display List
 void DisplaySinglyLinkedList(SLL * Head)
 {
 	if(Head == NULL)
@@ -71,6 +79,18 @@ void DisplaySinglyLinkedList(SLL * Head)
 		{
 			printf(" Roll no : %d \n Name : %s  \n------------------------------------------------------------------------------------------------------------------------\n",Head->rollNo,Head->name);
 		}	   
+	}
+}
+
+
+//Free Linked List
+void FreeLinkedList(SLL * Head){
+	SLL * temp = NULL;
+	
+	while(Head!=NULL){
+		temp = Head;
+		Head = Head->next;
+		free(temp);
 	}
 }
 
@@ -94,6 +114,7 @@ int main()
 		switch (Choice){
 			
 			case 1:	
+					FreeLinkedList(Start);
 					Start = NULL;
 					Start = CreateLinkedList(Start);
 			break;
@@ -104,8 +125,8 @@ int main()
 			break;
 			
 			case 3:
-			        printf("\n\n Exiting the linked list ....");
-					free(Start);
+			        printf("\n\n Exiting the linked list ....\n");
+					FreeLinkedList(Start);
 					Start = NULL;
 					exit(0);
 			break;

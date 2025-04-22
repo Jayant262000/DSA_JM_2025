@@ -25,6 +25,7 @@ typedef struct SinglyLinkedList{
 SLL * CreateLinkedList(SLL * );
 SLL * SwapNode(SLL* );
 void DisplaySinglyLinkedList(SLL * );
+void FreeLinkedList(SLL* );
 
 
 // Linked List creation 
@@ -119,6 +120,16 @@ void DisplaySinglyLinkedList(SLL * Head)
 	}
 }
 
+//Free Linked List
+void FreeLinkedList(SLL * Head){
+	SLL * temp = NULL;
+	
+	while(Head!=NULL){
+		temp = Head;
+		Head = Head->next;
+		free(temp);
+	}
+}
 
 int main()
 {
@@ -141,6 +152,7 @@ int main()
 		switch (Choice){
 			
 			case 1:	
+					FreeLinkedList(Start);
 					Start = NULL;
 					Start = CreateLinkedList(Start);
 			break;
@@ -164,8 +176,8 @@ int main()
 			
 			case 4:
 					printf("\n Exiting the linked list ....\n");
-					Start = NULL;
-					free(Start);	
+					FreeLinkedList(Start);
+					Start = NULL;	
 					exit(0);
 			break;
 			
