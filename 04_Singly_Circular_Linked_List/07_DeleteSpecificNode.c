@@ -22,7 +22,7 @@ typedef struct SinglyCircularLinkedList{
 //Functions
 SCLL * CreateLinkedList(SCLL * );
 void DisplayLinkedList(SCLL * );
-SCLL* DeleteSpecificNode(SCLL * );
+SCLL* DeleteSpecificNode(SCLL * , int );
 void FreeLinkedList(SCLL * );
 
 
@@ -65,52 +65,51 @@ SCLL* DeleteSpecificNode(SCLL * last,int RollNo){
 	
 	SCLL * tempNode = NULL;
 	SCLL * iter = last->next;
+	SCLL * prev = last;
+
 	int flag = 0;
 	
 	
-	if((last == NULL||last->next == last)&&last->rollNo == RollNo){
+	if((last->next == last)&&last->rollNo == RollNo){
 		free(last);
 		last = NULL;
 		printf("\n********Node deleted successfully ********\n");
 		return NULL;
 	}
-	else if(last->next->rollNo == RollNo)
-	{
-		tempNode = last->next;
-		last->next = tempNode->next;
-		flag = 1;
-		free(tempNode);
-	}
 	
-	
+
 	while(iter!=last){
-		if(iter->next->rollNo==RollNo){
-			if(iter->next==last)
-			{
-				tempNode = iter->next;
-				iter->next = tempNode->next;
-				last = iter;
-				free(tempNode);
-				flag = 1;
-				
-			}
-			else
-			{
-				tempNode = iter->next;
-				iter->next = tempNode->next;
-				free(tempNode);
-				flag = 1;
-			}
+		
+		if(iter->rollNo==RollNo){
+			iter = prev;
+			tempNode = iter->next;
+			iter->next = tempNode->next;
+			
+			free(tempNode);
+			flag = 1;
 		}
-		else
-		{	
-			iter = iter->next;
+		prev = iter;
+		iter = iter->next;
+	}
+	if(iter == last&&last->rollNo == RollNo)
+	{
+		if((last->next == last)&&last->rollNo == RollNo)
+		{
+			free(last);
+			last = NULL;
+			printf("\n********Node deleted successfully ********\n");
+			return NULL;
 		}
+		iter = prev;
+		tempNode = iter->next;
+		iter->next = tempNode->next;
+		last = iter;
+			
+		free(tempNode);
+		flag = 1;
 	}
 	
-	
-	
-	
+
 	if(flag==1)
 	{
 		printf("\n********Node deleted successfully ********\n");
