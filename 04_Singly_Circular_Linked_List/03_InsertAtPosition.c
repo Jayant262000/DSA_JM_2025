@@ -20,9 +20,9 @@ typedef struct SinglyCircularLinkedList{
 }SCLL;
 
 //Functions
-SCLL * CreateLinkedList(SCLL * );
+SCLL * CreateLinkedList(SCLL * ,  int * );
 void DisplayLinkedList(SCLL * );
-SCLL* InsertNodeAtPosition(SCLL * ,int );
+SCLL* InsertNodeAtPosition(SCLL * ,int ,int *);
 void FreeLinkedList(SCLL * );
 
 
@@ -158,6 +158,7 @@ int main(void){
 	SCLL* End = NULL;
 	int Choice;
 	int position;
+	int totalNodes = 0;
 	
 	do{
 		printf("\n********** Singly Circular Linked List **********\n");
@@ -186,7 +187,7 @@ int main(void){
 			case 3:
 					printf("\nEnter the Position:  ");
 					scanf("%d",&position);
-					
+				
 					if(position <= 0 || position > totalNodes+1)
 					{
 						printf("\n!!!Invalid Position please enter the position again!!!\n");
