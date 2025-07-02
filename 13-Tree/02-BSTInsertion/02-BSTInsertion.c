@@ -96,23 +96,34 @@ BST * BSTCreation(BST * Root)
 BST * InsertNode(BST * Root){
 	BST * iter = Root;
 	BST * newNode = NULL;
-
-	newNode = MemoryAllocation(newNode);
+	int flag = 0;	
 
 	while(1){
-		if(Root->data > newNode->data){
+		if(flag==0)
+		{
+			newNode = MemoryAllocation(newNode);
+			iter = Root;
+		}
+		flag=1;
+		if(iter->data > newNode->data){
 			if(iter->left==NULL){
 				iter->left = newNode;
 				break;
 			}
 			iter = iter->left;
 		}
-		else if(Root->data < newNode->data){
+		else if(iter->data < newNode->data){
 			if(iter->right == NULL){
 				iter->right = newNode;
 				break;
 			}
 			iter = iter->right;
+		}
+		else if(iter->data == newNode->data)
+		{
+			printf("\n!!! The Node is already exists !!!\n");
+			flag = 0;
+			continue;
 		}
 	}
 

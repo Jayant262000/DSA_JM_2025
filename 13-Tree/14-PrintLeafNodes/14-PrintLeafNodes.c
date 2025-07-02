@@ -54,9 +54,7 @@ BST * BSTCreation(BST * Root)
 					}
 					iter = iter->left; 
 				}
-				else
-				{
-					if(newNode->data > iter->data)
+				else if(newNode->data > iter->data)
 					{
 						if(iter->right == NULL)
 						{
@@ -65,7 +63,6 @@ BST * BSTCreation(BST * Root)
 						}
 						iter = iter->right; 
 					}
-				}
 				else if(iter->data == newNode->data)
 				{
 					printf("\n!!! The Node is already exists !!!\n");
